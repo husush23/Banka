@@ -65,10 +65,10 @@ function App() {
             </div>
           </form>
           {userId && (
-            <>
+            <div className='sections'>
               <CardList cards={cards} />
               <Transactions transactions={transactions} />
-            </>
+            </div>
           )}
         </div>
       </div>

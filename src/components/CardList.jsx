@@ -1,9 +1,5 @@
-// CardList.jsx
-import React from 'react';
-import './card.css';
-
 const CardList = ({cards}) => (
-  <div className='w-100 card'>
+  <div className='w-100 bg-primary text-white fs-4 text '>
     <h2 className='mb-4 text-center'>Cards</h2>
     <div className='list-group'>
       {cards.map(card => (
