@@ -39,34 +39,64 @@ function App() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Enter your user ID:</label>
-        <input
-          type='text'
-          value={userId}
-          onChange={e => setUserId(e.target.value)}
-        />
-        <button type='submit'>Submit</button>
-      </form>
-      <div>
-        <h2>Cards</h2>
-        {cards.map(card => (
-          <div key={card.id}>
-            <p>Card Number: {card.cardNumber}</p>
-            <p>Balance: {card.balance}</p>
-          </div>
-        ))}
-      </div>
-      <div>
-        <h2>Transactions</h2>
-        {transactions.map((transaction, index) => (
-          <div key={index}>
-            <p>Type: {transaction.type}</p>
-            <p>Amount: {transaction.amount}</p>
-            <p>Date: {new Date(transaction.timestamp).toLocaleDateString()}</p>
-          </div>
-        ))}
+    <div className='container mt-5'>
+      <div className='row justify-content-center'>
+        <div className='col-md-6'>
+          <form onSubmit={handleSubmit} className='mb-5'>
+            <div className='mb-3'>
+              <label htmlFor='userIdInput' className='form-label'>
+                Enter your user ID:
+              </label>
+              <input
+                type='text'
+                className='form-control'
+                id='userIdInput'
+                value={userId}
+                onChange={e => setUserId(e.target.value)}
+                placeholder='User ID'
+              />
+            </div>
+            <button type='submit' className='btn btn-primary'>
+              Submit
+            </button>
+          </form>
+
+          {userId && (
+            <>
+              <div>
+                <h2 className='mb-4'>Cards</h2>
+                <div className='list-group'>
+                  {cards.map(card => (
+                    <div
+                      key={card.id}
+                      className='list-group-item list-group-item-action'
+                    >
+                      <p>Card Number: {card.cardNumber}</p>
+                      <p>Balance: {card.balance}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className='mt-5'>
+                <h2 className='mb-4'>Transactions</h2>
+                {transactions.map((transaction, index) => (
+                  <div key={index} className='card mb-3'>
+                    <div className='card-body'>
+                      <h5 className='card-title'>
+                        {transaction.type} - {transaction.amount}
+                      </h5>
+                      <p className='card-text'>
+                        Date:{' '}
+                        {new Date(transaction.timestamp).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
